@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GlobalStyle } from "./styles/GlobalStyle";
-import Login from "./components/Login";
+import LoginPage from "./components/LoginPage";
 
 const AppContainer = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <AppContainer>
       <GlobalStyle />
-      <Login />
+      <LoginPage />
     </AppContainer>
   );
 };

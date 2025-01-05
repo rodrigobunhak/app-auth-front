@@ -1,21 +1,28 @@
 import React from "react";
-import styled from "styled-components";
 import { GlobalStyle } from "./styles/GlobalStyle";
-import LoginPage from "./components/LoginPage";
-
-const AppContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { Header } from "./components/Header";
+import { UsersList } from "./components/UserList";
+import { SignIn } from "./components/SignIn";
+import { SignUp } from "./components/SignUp";
 
 const App: React.FC = () => {
   return (
-    <AppContainer>
+    <AuthProvider>
       <GlobalStyle />
-      <LoginPage />
-    </AppContainer>
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/users" element={<UsersList />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 };
 
